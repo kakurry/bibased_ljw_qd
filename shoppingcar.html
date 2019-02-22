@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>购物车</title>
+    <meta charset="utf-8">
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <!--theme-style-->
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <!--//theme-style-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!--fonts-->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <!--//fonts-->
+    <!--<script src="js/jquery.min.js"></script>-->
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/jquery.easydropdown.js"></script>
+    <script src="js/bootstrap.js"></script>
+</head>
+<body>
+<!--header-->
+<div class="header">
+    <div class="top-header">
+        <div class="container">
+            <div class="top-header-left">
+                <ul class="support">
+                    <li><a href="#"><label> </label></a></li>
+                    <li><a href="#">全天候<span class="live"> 现场支持</span></a></li>
+                </ul>
+                <ul class="support">
+                    <li class="van"><a href="#"><label> </label></a></li>
+                    <li><a href="#">免费送货 <span class="live">每天超过 50万单</span></a></li>
+                </ul>
+                <div class="clearfix"> </div>
+            </div>
+            <div class="top-header-right">
+                <div class="down-top">
+
+                    <select tabindex="4" class="dropdown">
+                        <option value="" class="label" value="">英语</option>
+                        <option value="1">日语</option>
+                        <option value="2">法语</option>
+                        <option value="3">德语</option>
+                    </select>
+                </div>
+                <div class="down-top top-down">
+
+                    <select tabindex="4" class="dropdown ">
+                        <option value="" class="label" value="">货币 :人名币</option>
+                        <option value="1">美元</option>
+                        <option value="2">欧元</option>
+                    </select>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+    <div class="bottom-header">
+        <div class="container">
+            <div class="header-bottom-left">
+                <div class="logo">
+                    <a href="index.html"><img src="images/logo.png" alt=" " /></a>
+                </div>
+                <div class="search" style="border: 0px solid white;">
+                    <input type="text" value="" id="classify" style="border: 1px solid gainsboro;margin-right: 0px;">
+                    <button type="button" class="btn btn-info" style="width: 80px;height: 36px;margin-left: 0px;"  onclick="research()">查询</button>
+                    <!--<input type="text" value="" id="classify" >
+                    &lt;!&ndash;<input type="submit"  value="查询" onclick="research()">&ndash;&gt;
+                    <button type="button" class="btn btn-info"  onclick="research()">查询</button>-->
+
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+            <div class="header-bottom-right">
+                <ul class="men-grid" id="alla1">
+                    <!--<li id="a1"><a href="login.html"><span> </span>你的账户</a></li>
+                    <li id="a2" class="login"><a href="login.html"><span> </span>登录|</a><a href="register.html">注册</a></li>-->
+                    <li class="cart"><a href="shoppingcar.html"><span> </span>购物车</a></li>
+                </ul>
+                <!--<div class="sign-up-right">
+                    <a href="register.html">SIGNUP</a>
+                </div>-->
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var score = "";
+    var qianduanlinshiuser = "";
+    $(document).ready(function() {
+        /*查询登录人*/
+        $.post("http://localhost:8082/userdongtaiuser.action", function (data) {
+            debugger;
+            if((data != "")&&(data.name != null)){
+                qianduanlinshiuser = data.name;
+                $("#a2").hide();
+                var strhtml = " <li id=\"a1\"><a href=\"\"><span> </span>系统登录者："+data.name+"</a></li>";
+                $(strhtml).prependTo($("#alla1"));
+            }else{
+                var strr = "<li id=\"a1\"><a href=\"login.html\"><span> </span>你的账户</a></li>";
+                $("#a2").show();
+                $(strr).prependTo($("#alla1"));
+            }
+        })
+
+        /* 查询购物车记录*/
+        $.post("http://localhost:8082/shoppingcarAllgoods.action",{"people":qianduanlinshiuser}, function (data) {
+            debugger;
+            if(data != ""){
+                score =  data.length;
+                var stt =  "<b>商品总数量（"+score+"）</b>";
+                $("#allscore").append(stt);
+                debugger;
+                for(var i = 0;i<data.length;i++){
+                    var htmlstr ="<div class=\"row\" style=\"margin-top: 30px;border: 1px solid #F4F4F6\">"+
+                        "           <div style=\"float: left;width: 50px;height: 180px;line-height: 180px;text-align: center;\">"+
+                        "               <input type=\"checkbox\" style=\"width: 20px;height: 20px;\" class='checkbox-dan' >"+
+                        "           </div>"+
+                        "            <div style=\"float: left;width: 150px;height: 180px;\">"+
+                        "                <img src=\""+data[i].goodsimagepath+"\" width=\"150px\" height=\"180px\" alt=\"不存在\">"+
+                        "            </div>"+
+                        "           <div  style=\"float: left;width: 50px;height: 180px;\"></div>"+
+                        "           <div  style=\"float: left;width: 250px;height: 180px;text-align: left;\">"+
+                        "               <h4 style=\"padding-top: 40px;\"><a href=\"#\">"+data[i].gongbiti+"</a></h4>"+
+                        "               <p>"+data[i].goodsillustrate+"</p>"+
+                        "           </div>"+
+                        "           <div  style=\"float: left;width: 130px;height: 180px;\">"+
+                        "               <h4 style=\"padding-top: 40px;\"><a href=\"#\">价格：</a></h4>"+
+                        "                <span><b>"+data[i].goodsmoney+"$</b></span>"+
+                        "           </div>"+
+                        "           <div  style=\"float: left;width: 70px;height: 180px;\">"+
+                        "               <h4 style=\"padding-top: 40px;\"><a href=\"#\">操作：</a></h4>"+
+                        "               <button type=\"button\" class=\"btn btn-danger\" style=\"width: 50px;height: 30px;margin-left: 0px;\" onclick='shanchu("+data[i].goodscode+")'>删除</button>"+
+                        "           </div>"+
+                        "           <div class=\"clearfix\"> </div>"+
+                        "       </div>";
+                    $(htmlstr).prependTo($("#gouwuche"));
+                }
+            }
+        })
+    });
+
+    function  zhuxiao(){
+        $.post("http://localhost:8082/zhuxiaoqiantai.action", function (data) {
+            if(data == true){
+                alert("注销成功！")
+                window.location.href="index.html"
+            }
+        })
+    }
+
+    function shanchu(that){
+        debugger;
+        $.post("http://localhost:8082/gouwucheshanchu.action", {"goodscode":that,"people":qianduanlinshiuser},function (data) {
+            if(data == true){
+                alert("删除成功！")
+                debugger;
+                $('#gouwuche').html("");
+
+                /* 查询购物车记录*/
+                $.post("http://localhost:8082/shoppingcarAllgoods.action",{"people":qianduanlinshiuser}, function (data) {
+                    debugger;
+                    if(data != ""){
+                        score =  data.length;
+                        var stt =  "<b>商品总数量（"+score+"）</b>";
+                        $("#allscore").append(stt);
+                        debugger;
+                        for(var i = 0;i<data.length;i++){
+                            var htmlstr ="<div class=\"row\" style=\"margin-top: 30px;border: 1px solid #F4F4F6\">"+
+                                "           <div style=\"float: left;width: 50px;height: 180px;line-height: 180px;text-align: center;\">"+
+                                "               <input type=\"checkbox\" style=\"width: 20px;height: 20px;\" class='checkbox-dan'>"+
+                                "           </div>"+
+                                "            <div style=\"float: left;width: 150px;height: 180px;\">"+
+                                "                <img src=\""+data[i].goodsimagepath+"\" width=\"150px\" height=\"180px\" alt=\"不存在\">"+
+                                "            </div>"+
+                                "           <div  style=\"float: left;width: 50px;height: 180px;\"></div>"+
+                                "           <div  style=\"float: left;width: 250px;height: 180px;text-align: left;\">"+
+                                "               <h4 style=\"padding-top: 40px;\"><a href=\"#\">"+data[i].gongbiti+"</a></h4>"+
+                                "               <p>"+data[i].goodsillustrate+"</p>"+
+                                "           </div>"+
+                                "           <div  style=\"float: left;width: 130px;height: 180px;\">"+
+                                "               <h4 style=\"padding-top: 40px;\"><a href=\"#\">价格：</a></h4>"+
+                                "                <span><b>"+data[i].goodsmoney+"$</b></span>"+
+                                "           </div>"+
+                                "           <div  style=\"float: left;width: 70px;height: 180px;\">"+
+                                "               <h4 style=\"padding-top: 40px;\"><a href=\"#\">操作：</a></h4>"+
+                                "               <button type=\"button\" class=\"btn btn-danger\" style=\"width: 50px;height: 30px;margin-left: 0px;\" onclick='shanchu("+data[i].goodscode+")'>删除</button>"+
+                                "           </div>"+
+                                "           <div class=\"clearfix\"> </div>"+
+                                "       </div>";
+                            $(htmlstr).prependTo($("#gouwuche"));
+                        }
+                    }
+                })
+            }else{
+                alert("删除失败！")
+            }
+        })
+    }
+    function quanxuancheckbox(){
+        if($('#allcheckbox').is(':checked')) {
+            debugger;
+            $(".checkbox-dan").attr('checked', true);
+
+        }else{
+            $(".checkbox-dan").attr('checked', false);
+
+        }
+    }
+
+</script>
+
+<!---->
+<div class="container">
+
+    <div class="account_grid" style="background-color: #FBFBFC;">
+        <h3 style="text-align: center;"><b>物车信息预览</b></h3>
+        <div style="width: 100%;height: 50px;font-size: 120%;line-height: 50px;background-color: #F4F4F5;"><b>&nbsp;&nbsp;&nbsp;购物车列表</b><span style="margin-left: 55%;" id="allscore"></span></div>
+        <div class="clearfix"> </div>
+        <div id="gouwuche">
+            <!--  <div class="row" style="margin-top: 30px;border: 1px solid #F4F4F6">
+                  <div style="float: left;width: 50px;height: 180px;line-height: 180px;text-align: center;">
+                      <input type="checkbox" style="width: 20px;height: 20px;" >
+                  </div>
+                   <div style="float: left;width: 150px;height: 180px;">
+                       <img src="images/pic1.jpg" width="150px" height="180px" alt="不存在">
+                   </div>
+                  <div  style="float: left;width: 50px;height: 180px;"></div>
+                  <div  style="float: left;width: 250px;height: 180px;text-align: left;">
+                      <h4 style="padding-top: 40px;"><a href=\"#\">美味多多</a></h4>
+                      <p>香椿可口</p>
+                  </div>
+                  <div  style="float: left;width: 130px;height: 180px;">
+                      <h4 style="padding-top: 40px;"><a href=\"#\">价格：</a></h4>
+                       <span><b>300$</b></span>
+                  </div>
+                  <div  style="float: left;width: 70px;height: 180px;">
+                      <h4 style="padding-top: 40px;"><a href=\"#\">操作：</a></h4>
+                      <button type="button" class="btn btn-danger" style="width: 50px;height: 30px;margin-left: 0px;" onclick="shanchu()">删除</button>
+                  </div>
+                  <div class="clearfix"> </div>
+              </div>
+
+               <div class="row" style="margin-top: 30px;border: 1px solid #F4F4F6">
+                   <div style="float: left;width: 50px;height: 180px;line-height: 180px;text-align: center;">
+                       <input type="checkbox" style="width: 20px;height: 20px;" >
+                   </div>
+                   <div style="float: left;width: 150px;height: 180px;">
+                       <img src="images/pic1.jpg" width="150px" height="180px" alt="不存在">
+                   </div>
+                   <div  style="float: left;width: 50px;height: 180px;"></div>
+                   <div  style="float: left;width: 250px;height: 180px;text-align: left;">
+                       <h4 style="padding-top: 40px;"><a href=\"#\">美味多多</a></h4>
+                       <p>香椿可口</p>
+                   </div>
+                   <div  style="float: left;width: 130px;height: 180px;">
+                       <h4 style="padding-top: 40px;"><a href=\"#\">价格：</a></h4>
+                       <span><b>300$</b></span>
+                   </div>
+                   <div  style="float: left;width: 70px;height: 180px;">
+                       <h4 style="padding-top: 40px;"><a href=\"#\">操作：</a></h4>
+                       <button type="button" class="btn btn-danger" style="width: 50px;height: 30px;margin-left: 0px;">删除</button>
+                   </div>
+                   <div class="clearfix"> </div>
+               </div>
+
+               <div class="row" style="margin-top: 30px;border: 1px solid #F4F4F6">
+                   <div style="float: left;width: 50px;height: 180px;line-height: 180px;text-align: center;">
+                       <input type="checkbox" style="width: 20px;height: 20px;" >
+                   </div>
+                   <div style="float: left;width: 150px;height: 180px;">
+                       <img src="images/pic1.jpg" width="150px" height="180px" alt="不存在">
+                   </div>
+                   <div  style="float: left;width: 50px;height: 180px;"></div>
+                   <div  style="float: left;width: 250px;height: 180px;text-align: left;">
+                       <h4 style="padding-top: 40px;"><a href=\"#\">美味多多</a></h4>
+                       <p>香椿可口</p>
+                   </div>
+                   <div  style="float: left;width: 130px;height: 180px;">
+                       <h4 style="padding-top: 40px;"><a href=\"#\">价格：</a></h4>
+                       <span><b>300$</b></span>
+                   </div>
+                   <div  style="float: left;width: 70px;height: 180px;">
+                       <h4 style="padding-top: 40px;"><a href=\"#\">操作：</a></h4>
+                       <button type="button" class="btn btn-danger" style="width: 50px;height: 30px;margin-left: 0px;">删除</button>
+                   </div>
+                   <div class="clearfix"> </div>
+               </div>
+
+               <div class="row" style="margin-top: 30px;border: 1px solid #F4F4F6">
+                   <div style="float: left;width: 50px;height: 180px;line-height: 180px;text-align: center;">
+                       <input type="checkbox" style="width: 20px;height: 20px;" >
+                   </div>
+                   <div style="float: left;width: 150px;height: 180px;">
+                       <img src="images/pic1.jpg" width="150px" height="180px" alt="不存在">
+                   </div>
+                   <div  style="float: left;width: 50px;height: 180px;"></div>
+                   <div  style="float: left;width: 250px;height: 180px;text-align: left;">
+                       <h4 style="padding-top: 40px;"><a href=\"#\">美味多多</a></h4>
+                       <p>香椿可口</p>
+                   </div>
+                   <div  style="float: left;width: 130px;height: 180px;">
+                       <h4 style="padding-top: 40px;"><a href=\"#\">价格：</a></h4>
+                       <span><b>300$</b></span>
+                   </div>
+                   <div  style="float: left;width: 70px;height: 180px;">
+                       <h4 style="padding-top: 40px;"><a href=\"#\">操作：</a></h4>
+                       <button type="button" class="btn btn-danger" style="width: 50px;height: 30px;margin-left: 0px;">删除</button>
+                   </div>
+                   <div class="clearfix"> </div>
+               </div>
+
+               <div class="row" style="margin-top: 30px;border: 1px solid #F4F4F6">
+                   <div style="float: left;width: 50px;height: 180px;line-height: 180px;text-align: center;">
+                       <input type="checkbox" style="width: 20px;height: 20px;" >
+                   </div>
+                   <div style="float: left;width: 150px;height: 180px;">
+                       <img src="images/pic1.jpg" width="150px" height="180px" alt="不存在">
+                   </div>
+                   <div  style="float: left;width: 50px;height: 180px;"></div>
+                   <div  style="float: left;width: 250px;height: 180px;text-align: left;">
+                       <h4 style="padding-top: 40px;"><a href=\"#\">美味多多</a></h4>
+                       <p>香椿可口</p>
+                   </div>
+                   <div  style="float: left;width: 130px;height: 180px;">
+                       <h4 style="padding-top: 40px;"><a href=\"#\">价格：</a></h4>
+                       <span><b>300$</b></span>
+                   </div>
+                   <div  style="float: left;width: 70px;height: 180px;">
+                       <h4 style="padding-top: 40px;"><a href=\"#\">操作：</a></h4>
+                       <button type="button" class="btn btn-danger" style="width: 50px;height: 30px;margin-left: 0px;">删除</button>
+                   </div>
+                   <div class="clearfix"> </div>
+               </div>-->
+        </div>
+            <div class="row" style="margin-top: 30px;">
+                <div style="float: left;width: 500px;height: 50px;text-align: left;">
+                    <span>全选：</span><input type="checkbox" id="allcheckbox" name="allcheckbox" style="width: 20px;height: 20px;padding-top: 5px;" onclick="quanxuancheckbox()" >
+                </div>
+                <div  style="float: left;width:200px;height: 50px; ">
+                    <button type="button" class="btn btn-info" style="width: 80px;height: 36px;margin-left: 0px;">继续购物</button>
+                    <button type="button" class="btn btn-info" style="width: 80px;height: 36px;margin-left: 0px;">结算</button>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+
+    </div>
+    <div class="sub-cate">
+        <div class=" top-nav rsidebar span_1_of_left">
+            <h3 class="cate">产品</h3>
+            <ul class="menu">
+                <li class="item1"><a href="#">精品服装<img class="arrow-img" src="images/arrow1.png" alt=""/> </a>
+                    <ul class="cute">
+                        <li class="subitem1"><a href="product.html?classify=1">衣服 </a></li>
+                        <li class="subitem2"><a href="product.html?classify=2">裤子 </a></li>
+                    </ul>
+                </li>
+                <li class="item2"><a href="#">精品配饰<img class="arrow-img " src="images/arrow1.png" alt=""/></a>
+                    <ul class="cute">
+                        <li class="subitem1"><a href="product.html?classify=3">精品背包 </a></li>
+                        <li class="subitem2"><a href="product.html?classify=8">精品手表 </a></li>
+                        <li class="subitem2"><a href="product.html?classify=10">精品项链 </a></li>
+                    </ul>
+                </li>
+                <li class="item3"><a href="#">学习工具<img class="arrow-img" src="images/arrow1.png" alt=""/> </a>
+                    <ul class="cute">
+                        <li class="subitem1"><a href="product.html?classify=6">书 </a></li>
+                        <li class="subitem2"><a href="product.html?classify=7">笔 </a></li>
+                    </ul>
+                </li>
+                <li class="item4"><a href="#">时尚鞋子 <img class="arrow-img" src="images/arrow1.png" alt=""/></a>
+                    <ul class="cute">
+                        <li class="subitem1"><a href="product.html?classify=4">最新款鞋 </a></li>
+                        <li class="subitem2"><a href="product.html?classify=9">运动鞋</a></li>
+                        <li class="subitem3"><a href="product.html?classify=5">帆布鞋</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <ul class="kid-menu">
+                        <li><a href="product.html">待上线产品</a></li>
+                        <li ><a href="product.html">待上线产品</a></li>
+                        <li ><a href="contact.html">联系我们</a></li>
+                        <li ><a href="" onclick="zhuxiao()">注销</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <!--initiate accordion-->
+        <script type="text/javascript">
+            $(function() {
+                var menu_ul = $('.menu > li > ul'),
+                    menu_a  = $('.menu > li > a');
+                menu_ul.hide();
+                menu_a.click(function(e) {
+                    e.preventDefault();
+                    if(!$(this).hasClass('active')) {
+                        menu_a.removeClass('active');
+                        menu_ul.filter(':visible').slideUp('normal');
+                        $(this).addClass('active').next().stop(true,true).slideDown('normal');
+                    } else {
+                        $(this).removeClass('active');
+                        $(this).next().stop(true,true).slideUp('normal');
+                    }
+                });
+
+            });
+        </script>
+        <div class=" chain-grid menu-chain">
+            <a href="single.html"><img class="img-responsive chain" src="images/wat.jpg" alt=" " /></a>
+            <div class="grid-chain-bottom chain-watch">
+                <span class="actual dolor-left-grid">300$</span>
+                <span class="reducedfrom">500$</span>
+                <h6>精品男士手表，你值得拥有！</h6>
+            </div>
+        </div>
+        <a class="view-all all-product" href="product.html">VIEW ALL PRODUCTS<span> </span></a>
+    </div>
+    <div class="clearfix"> </div>
+</div>
+<!---->
+<div class="footer">
+    <hr style="border: 1px solid #DEDEDE;"/>
+    <div class="footer-bottom">
+        <div class="container">
+            <div class="footer-bottom-cate col-lg-3 col-xs-3 col-md-3 col-sm-3" style="text-align: center;">
+                <h6>购物指南</h6>
+                <ul>
+                    <li style="color: #666666;"><a href="#">购物流程</a></li>
+                    <li style="color: #666666;"><a href="#">会员介绍</a></li>
+                    <li style="color: #666666;"><a href="#">生活旅行</a></li>
+                    <li style="color: #666666;"><a href="#">常见问题</a></li>
+                    <li style="color: #666666;"><a href="#">联系客服</a></li>
+                </ul>
+            </div>
+            <div class="footer-bottom-cate col-lg-3 col-xs-3 col-md-3 col-sm-3"  style="text-align: center;">
+                <h6>配送方式</h6>
+                <ul>
+                    <li style="color: #666666;"><a href="#">上门自提</a></li>
+                    <li style="color: #666666;"><a href="#">211限时达</a></li>
+                    <li style="color: #666666;"><a href="#">配送服务查询</a></li>
+                    <li style="color: #666666;"><a href="#">配送费收取标准</a></li>
+                    <li style="color: #666666;"><a href="#">海外配送</a></li>
+                </ul>
+            </div>
+            <div class="footer-bottom-cate col-lg-3 col-xs-3 col-md-3 col-sm-3"  style="text-align: center;">
+                <h6>支付方式</h6>
+                <ul>
+                    <li style="color: #666666;"><a href="#">货到付款</a></li>
+                    <li style="color: #666666;"><a href="#">在线支付</a></li>
+                    <li style="color: #666666;"><a href="#">分期付款</a></li>
+                    <li style="color: #666666;"><a href="#">邮局汇款</a></li>
+                    <li style="color: #666666;"><a href="#">公司转账</a></li>
+                </ul>
+            </div>
+            <div class="footer-bottom-cate col-lg-3 col-xs-3 col-md-3 col-sm-3"  style="text-align: center;">
+                <h6>售后服务</h6>
+                <ul>
+                    <li style="color: #666666;"><a href="#">售后政策</a></li>
+                    <li style="color: #666666;"><a href="#">价格保护</a></li>
+                    <li style="color: #666666;"><a href="#">退款说明</a></li>
+                    <li style="color: #666666;"><a href="#">返修/退换货</a></li>
+                    <li style="color: #666666;"><a href="#">取消订单</a></li>
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

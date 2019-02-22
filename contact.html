@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>联系我们</title>
+<meta charset="utf-8">
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<!--theme-style-->
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />	
+<!--//theme-style-->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!--fonts-->
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+<!--//fonts-->
+<!--<script src="js/jquery.min.js"></script>-->
+<script src="js/jquery-1.11.1.min.js"></script>
+<script src="js/jquery.easydropdown.js"></script>
+<script src="js/bootstrap.js"></script>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<script type="text/javascript" charset="utf-8" src="utf8-jsp/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="utf8-jsp/ueditor.all.min.js"> </script>
+<!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
+<!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
+<script type="text/javascript" charset="utf-8" src="utf8-jsp/lang/zh-cn/zh-cn.js"></script>
+
+<!--script-->
+</head>
+<body> 
+	<!--header-->
+	<div class="header">
+		<div class="top-header">
+			<div class="container">
+				<div class="top-header-left">
+					<ul class="support">
+						<li><a href="#"><label> </label></a></li>
+						<li><a href="#">全天候<span class="live"> 现场支持</span></a></li>
+					</ul>
+					<ul class="support">
+						<li class="van"><a href="#"><label> </label></a></li>
+						<li><a href="#">免费送货 <span class="live">每天超过 50万单</span></a></li>
+					</ul>
+					<div class="clearfix"> </div>
+				</div>
+				<div class="top-header-right">
+					<div class="down-top">
+
+						<select tabindex="4" class="dropdown">
+							<option value="" class="label" value="">英语</option>
+							<option value="1">日语</option>
+							<option value="2">法语</option>
+							<option value="3">德语</option>
+						</select>
+					 </div>
+					<div class="down-top top-down">
+
+						<select tabindex="4" class="dropdown ">
+							<option value="" class="label" value="">货币 :人名币</option>
+							<option value="1">美元</option>
+							<option value="2">欧元</option>
+						</select>
+					 </div>
+					<div class="clearfix"> </div>	
+				</div>
+				<div class="clearfix"> </div>		
+			</div>
+		</div>
+		<div class="bottom-header">
+			<div class="container">
+				<div class="header-bottom-left">
+					<div class="logo">
+						<a href="index.html"><img src="images/logo.png" alt=" " /></a>
+					</div>
+					<div class="search" style="border: 0px solid white;">
+						<input type="text" value="" id="classify" style="border: 1px solid gainsboro;margin-right: 0px;">
+						<button type="button" class="btn btn-info" style="width: 80px;height: 36px;margin-left: 0px;"  onclick="research()">查询</button>
+						<!--<input type="text" value="" id="classify" >
+						&lt;!&ndash;<input type="submit"  value="查询" onclick="research()">&ndash;&gt;
+						<button type="button" class="btn btn-info"  onclick="research()">查询</button>-->
+
+					</div>
+					<div class="clearfix"> </div>
+				</div>
+				<div class="header-bottom-right">
+					<ul class="men-grid" id="alla1">
+						<!--<li id="a1"><a href="login.html"><span> </span>你的账户</a></li>
+						<li id="a2" class="login"><a href="login.html"><span> </span>登录|</a><a href="register.html">注册</a></li>-->
+						<li class="cart"><a href="shoppingcar.html"><span> </span>购物车</a></li>
+					</ul>
+					<!--<div class="sign-up-right">
+						<a href="register.html">SIGNUP</a>
+					</div>-->
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+	</div>
+	<!---->
+	<div class="container">
+		<script>
+            //实例化编辑器
+            //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+            var ue = UE.getEditor('editor');
+		</script>
+			<!---->
+			 <div class="main">
+				 <div class="reservation_top">
+					<div class=" contact_right">
+						<h3 style="text-align: center;"><b>请填写反馈系统问题</b></h3>
+						<div class="contact-form">
+							<h4 style="text-align: left;margin:20px 0;"><b>快捷反馈:</b></h4>
+							<div class="row">
+								<label for="xiala1" class="col-md-3 col-lg-3 col-xs-3 col-sm-3 control-label" style="text-align: center;vertical-align: middle;height: 34px;line-height:34px;font-size: 110%;">系统是否存在缺陷：</label>
+								<div class="col-md-3 col-lg-3 col-xs-3 col-sm-3">
+									<select id="xiala1" name="xiala1" class="form-control" onchange="xiala1()">
+										<option value="">请选择</option>
+										<option value="系统存在缺陷">系统存在缺陷</option>
+										<option value="系统不存在缺陷">系统不存在缺陷</option>
+									</select>
+								</div>
+								<label for="xiala2" class="col-md-3 col-lg-3 col-xs-3 col-sm-3 control-label" style="text-align: center;vertical-align: middle;height: 34px;line-height:34px;font-size: 110%;">查询产品是否报错：</label>
+								<div class="col-md-3 col-lg-3 col-xs-3 col-sm-3">
+									<select id="xiala2" name="xiala2" class="form-control" onchange="xiala2()">
+										<option value="">请选择</option>
+										<option value="查询产品不显示">查询产品不显示</option>
+										<option value="查询产品显示不正确">查询产品显示不正确</option>
+									</select>
+								</div>
+
+							</div>
+							<div class="row" style="margin-top:30px;">
+								<label for="xiala3" class="col-md-3 col-lg-3 col-xs-3 col-sm-3 control-label" style="text-align: center;vertical-align: middle;height: 34px;line-height:34px;font-size: 110%;">系统是否好用：</label>
+								<div class="col-md-3 col-lg-3 col-xs-3 col-sm-3">
+									<select id="xiala3" name="xiala3" class="form-control" onchange="xiala3()">
+										<option value="">请选择</option>
+										<option value="系统：好用">好用</option>
+										<option value="系统：一般">一般</option>
+										<option value="系统：不好用">不好用</option>
+									</select>
+								</div>
+
+								<label for="xiala4" class="col-md-3 col-lg-3 col-xs-3 col-sm-3 control-label" style="text-align: center;vertical-align: middle;height: 34px;line-height:34px;font-size: 110%;">产品名称：</label>
+								<div class="col-md-3 col-lg-3 col-xs-3 col-sm-3">
+									<select id="xiala4" name="xiala4" class="form-control" onchange="xiala4()">
+										<option value="">请选择</option>
+
+									</select>
+								</div>
+
+							</div>
+
+							<div class="row" style="margin-top: 35px;">
+								<div class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
+									<script id="editor" type="text/plain" style="height:250px;"></script>
+								</div>
+							</div>
+
+							<div class="row"  style="margin-top:30px;">
+								<div class="col-md-5 col-lg-5 col-xs-5 col-sm-5"></div>
+								<div class="col-md-3 col-lg-3 col-xs-3 col-sm-3">
+								<button type="button" class="btn btn-info" style="width: 150px;height: 50px;" onclick="getContent()">保存</button>
+								</div>
+								<div class="col-md-4 col-lg-4 col-xs-4 col-sm-4"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+		   </div>
+
+			<script type="text/javascript">
+				var qianduanlinshiuser = "";
+				$(document).ready(function() {
+                    /*查询登录人*/
+                    $.post("http://localhost:8082/userdongtaiuser.action", function (data) {
+                        debugger;
+                        if((data != "")&&(data.name != null)){
+                            qianduanlinshiuser = data.name;
+                            $("#a2").hide();
+                            var strhtml = " <li id=\"a1\"><a href=\"\"><span> </span>系统登录者："+data.name+"</a></li>";
+                            $(strhtml).prependTo($("#alla1"));
+                        }else{
+                            var strr = "<li id=\"a1\"><a href=\"login.html\"><span> </span>你的账户</a></li>";
+                            $("#a2").show();
+                            $(strr).prependTo($("#alla1"));
+                        }
+                    })
+
+					debugger;
+					$.post("http://localhost:8082/allgoods.action",{"classify":$("#classify").val()}, function (data) {
+						if(data != ""){
+							debugger;
+							for(var i = 0;i<data.length;i++){
+								var htmlstr =  " <option value=\""+data[i].goodsname+"\" >"+data[i].goodsname+"</option>";
+                                $("#xiala4").append(htmlstr);
+							}
+						}
+					});
+				});
+
+				function  zhuxiao(){
+					$.post("http://localhost:8082/zhuxiaoqiantai.action", function (data) {
+						if(data == true){
+							alert("注销成功！")
+							window.location.href="index.html"
+						}
+					})
+				}
+
+				function research(){
+					console.log($("#classify").val())
+					$.post("http://localhost:8082/allgoods.action",{"classify":$("#classify").val()}, function (data) {
+						debugger;
+						if(data != ""){
+							$('#xiala4').html("");
+							debugger;
+							for(var i = 0;i<data.length;i++){
+								var htmlstr =  " <option value=\""+data[i].goodsname+"\" >"+data[i].goodsname+"</option>";
+								$("#xiala4").append(htmlstr);
+							}
+						}
+					});
+				}
+
+				function xiala1(){
+					if($("#xiala1").val()!=""){
+						var a1 = $("#xiala1").val();
+						var a11= "系统是否存在缺陷："+a1+";";
+						UE.getEditor('editor').execCommand('insertHtml', a11);
+					}
+				}
+
+				function xiala2(){
+					if($("#xiala2").val()!=""){
+						var a1 = $("#xiala2").val();
+						var a11= "查询产品是否报错："+a1+";";
+						UE.getEditor('editor').execCommand('insertHtml', a11);
+					}
+				}
+				function xiala3(){
+					if($("#xiala3").val()!=""){
+						var a1 = $("#xiala3").val();
+						var a11= "系统是否好用："+a1+";";
+						UE.getEditor('editor').execCommand('insertHtml', a11);
+					}
+				}
+				function xiala4(){
+					if($("#xiala4").val()!=""){
+						var a1 = $("#xiala4").val();
+						/*var a11= "产品名称："+a1+";";*/
+						UE.getEditor('editor').execCommand('insertHtml', a1);
+					}
+				}
+
+				/*获取富文本编辑框中的内容*/
+				function getContent() {
+					debugger;
+					var content = UE.getEditor('editor').getContent();
+					if(qianduanlinshiuser != ""){
+						$.post("http://localhost:8082/xitongfankui.action",{"content":content,"people":qianduanlinshiuser} ,function (data) {
+							debugger;
+							if(data == true){
+								alert("保存成功！");
+							}else{
+								alert("保存失败！");
+							}
+						});
+					}else{
+						alert("您未登录，请先登录！")
+						window.location.href="login.html";
+					}
+
+				}
+
+			</script>
+
+
+		   <div class="sub-cate">
+				<div class=" top-nav rsidebar span_1_of_left">
+					<h3 class="cate">产品</h3>
+					<ul class="menu">
+						<li class="item1"><a href="#">精品服装<img class="arrow-img" src="images/arrow1.png" alt=""/> </a>
+							<ul class="cute">
+								<li class="subitem1"><a href="product.html?classify=1">衣服 </a></li>
+								<li class="subitem2"><a href="product.html?classify=2">裤子 </a></li>
+							</ul>
+						</li>
+						<li class="item2"><a href="#">精品配饰<img class="arrow-img " src="images/arrow1.png" alt=""/></a>
+							<ul class="cute">
+								<li class="subitem1"><a href="product.html?classify=3">精品背包 </a></li>
+								<li class="subitem2"><a href="product.html?classify=8">精品手表 </a></li>
+								<li class="subitem2"><a href="product.html?classify=10">精品项链 </a></li>
+							</ul>
+						</li>
+						<li class="item3"><a href="#">学习工具<img class="arrow-img" src="images/arrow1.png" alt=""/> </a>
+							<ul class="cute">
+								<li class="subitem1"><a href="product.html?classify=6">书 </a></li>
+								<li class="subitem2"><a href="product.html?classify=7">笔 </a></li>
+							</ul>
+						</li>
+						<li class="item4"><a href="#">时尚鞋子 <img class="arrow-img" src="images/arrow1.png" alt=""/></a>
+							<ul class="cute">
+								<li class="subitem1"><a href="product.html?classify=4">最新款鞋 </a></li>
+								<li class="subitem2"><a href="product.html?classify=9">运动鞋</a></li>
+								<li class="subitem3"><a href="product.html?classify=5">帆布鞋</a></li>
+							</ul>
+						</li>
+						<li>
+							<ul class="kid-menu">
+								<li><a href="product.html">待上线产品</a></li>
+								<li ><a href="product.html">待上线产品</a></li>
+								<li ><a href="contact.html">联系我们</a></li>
+								<li ><a href="" onclick="zhuxiao()">注销</a></li>
+							</ul>
+						</li>
+					</ul>
+					</div>
+				<!--initiate accordion-->
+		<script type="text/javascript">
+			$(function() {
+			    var menu_ul = $('.menu > li > ul'),
+			           menu_a  = $('.menu > li > a');
+			    menu_ul.hide();
+			    menu_a.click(function(e) {
+			        e.preventDefault();
+			        if(!$(this).hasClass('active')) {
+			            menu_a.removeClass('active');
+			            menu_ul.filter(':visible').slideUp('normal');
+			            $(this).addClass('active').next().stop(true,true).slideDown('normal');
+			        } else {
+			            $(this).removeClass('active');
+			            $(this).next().stop(true,true).slideUp('normal');
+			        }
+			    });
+			
+			});
+		</script>
+					<div class=" chain-grid menu-chain">
+	   		     		<a href="single.html"><img class="img-responsive chain" src="images/wat.jpg" alt=" " /></a>	   		     		
+	   		     		<div class="grid-chain-bottom chain-watch">
+		   		     		<span class="actual dolor-left-grid">300$</span>
+		   		     		<span class="reducedfrom">500$</span>  
+		   		     		<h6>男士精品运动手表</h6>
+	   		     		</div>
+	   		     	</div>
+	   		     	 <a class="view-all all-product" href="product.html">VIEW ALL PRODUCTS<span> </span></a>
+			</div>
+	     </div>
+	<!---->
+	<div class="footer">
+		<hr style="border: 1px solid #DEDEDE;"/>
+		<div class="footer-bottom">
+			<div class="container">
+				<div class="footer-bottom-cate col-lg-3 col-xs-3 col-md-3 col-sm-3" style="text-align: center;">
+					<h6>购物指南</h6>
+					<ul>
+						<li style="color: #666666;"><a href="#">购物流程</a></li>
+						<li style="color: #666666;"><a href="#">会员介绍</a></li>
+						<li style="color: #666666;"><a href="#">生活旅行</a></li>
+						<li style="color: #666666;"><a href="#">常见问题</a></li>
+						<li style="color: #666666;"><a href="#">联系客服</a></li>
+					</ul>
+				</div>
+				<div class="footer-bottom-cate col-lg-3 col-xs-3 col-md-3 col-sm-3"  style="text-align: center;">
+					<h6>配送方式</h6>
+					<ul>
+						<li style="color: #666666;"><a href="#">上门自提</a></li>
+						<li style="color: #666666;"><a href="#">211限时达</a></li>
+						<li style="color: #666666;"><a href="#">配送服务查询</a></li>
+						<li style="color: #666666;"><a href="#">配送费收取标准</a></li>
+						<li style="color: #666666;"><a href="#">海外配送</a></li>
+					</ul>
+				</div>
+				<div class="footer-bottom-cate col-lg-3 col-xs-3 col-md-3 col-sm-3"  style="text-align: center;">
+					<h6>支付方式</h6>
+					<ul>
+						<li style="color: #666666;"><a href="#">货到付款</a></li>
+						<li style="color: #666666;"><a href="#">在线支付</a></li>
+						<li style="color: #666666;"><a href="#">分期付款</a></li>
+						<li style="color: #666666;"><a href="#">邮局汇款</a></li>
+						<li style="color: #666666;"><a href="#">公司转账</a></li>
+					</ul>
+				</div>
+				<div class="footer-bottom-cate col-lg-3 col-xs-3 col-md-3 col-sm-3"  style="text-align: center;">
+					<h6>售后服务</h6>
+					<ul>
+						<li style="color: #666666;"><a href="#">售后政策</a></li>
+						<li style="color: #666666;"><a href="#">价格保护</a></li>
+						<li style="color: #666666;"><a href="#">退款说明</a></li>
+						<li style="color: #666666;"><a href="#">返修/退换货</a></li>
+						<li style="color: #666666;"><a href="#">取消订单</a></li>
+					</ul>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
